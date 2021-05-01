@@ -1,2 +1,0 @@
-# patron.db
-patron
