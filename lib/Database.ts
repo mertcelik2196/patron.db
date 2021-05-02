@@ -61,6 +61,7 @@ private  setData(key:string, data:any, value:any) {
 
 
 
+
 /* UTİL BİTİŞ */
 
 
@@ -107,6 +108,13 @@ has(key:string) {
   if(!key || typeof key !== "string") throw new Error("Geçersiz Anahtar!", "AnahtarHatası");
    return Boolean(this.get(key));
 };
+
+
+exists(key:string) {
+  if(!key || typeof key !== "string") throw new Error("Geçersiz Anahtar!", "AnahtarHatası");
+   return Boolean(this.get(key));
+};
+
 
 all() {
   return Object.keys(this.data).map((key) => {
@@ -198,6 +206,44 @@ type(key:string){
   if (Array.isArray(fetched)) return "array";
   return typeof fetched;
 };
+
+backup(zaman:number) {
+  if(!zaman || typeof zaman !== "number") throw new Error("Geçersiz Zaman!", "ZamanHatası");
+  const ds:any = './Yedekler/';
+  if (!fs.existsSync(ds)) {
+      fs.mkdirSync(ds);
+  };
+  setInterval(() => {
+    const ad = `yedek-${Date.now()}.json`;
+    fs.writeFileSync(ds+ad, JSON.stringify(this.data, null), "UTF-8");
+}, (zaman || 86400000));
+};
+
+
+pull(key:string, value:any, multiple?:boolean) {
+if(!multiple){
+  multiple = true;
+};
+let data = this.get(key);
+if (data === null) return false;
+if (!Array.isArray(data)) throw new Error("Pull Yapacağım Objede Array Yok!", "ArrayHatası");
+if (Array.isArray(value)) {
+  data = data.filter(i => !value.includes(i));
+  return this.set(key, data);
+} else {
+  if (!!multiple) {
+      data = data.filter(i => i !== value);
+      return this.set(key, data);
+  } else {
+      const hasItem = data.some(x => x === value);
+      if (!hasItem) return false;
+      const index = data.findIndex(x => x === value);
+      data = data.splice(index, 1);
+      return this.set(key, data);
+  };
+};
+};
+
 
 };
 

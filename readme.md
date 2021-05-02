@@ -49,6 +49,12 @@ db.deleteAll();
 db.PatrondbToquickdb(quickdb);
 
 db.quickdbToPatrondb(quickdb);
+
+db.backup(3600000); // MS
+
+db.pull("User",["YOUR İTEM"]);
+
+
 ```
 <div align="center">
 
