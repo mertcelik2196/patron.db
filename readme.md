@@ -22,6 +22,8 @@ const quickdb = require("quick.db");
 
 db.set("Hello","World");
 
+db.set("Hello_9874449847_owner","World");
+
 db.get("Hello");
 
 db.fetch("Hello");
@@ -53,6 +55,12 @@ db.quickdbToPatrondb(quickdb);
 db.backup(3600000); // MS
 
 db.pull("User",["YOUR İTEM"]);
+
+db.includes("9874449847");
+
+db.startsWith("Hello_");
+
+db.endsWith("_owner")
 
 
 ```

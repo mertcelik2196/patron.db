@@ -1,6 +1,6 @@
 {
   "name": "patron.db",
-  "version": "5.0.0",
+  "version": "5.0.2",
   "description": "✨ patron.db Kullanışlı Database Modülü!",
   "main": "dist/index.js",
   "files": [
