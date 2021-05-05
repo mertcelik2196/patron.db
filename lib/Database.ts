@@ -291,10 +291,6 @@ endsWith(key:string){
     return obj;
 };
 
-
-/* Burak Seni S. /Seveyim/ */
-
-
 };
 
 
