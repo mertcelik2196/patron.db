@@ -259,11 +259,11 @@ includes(key:string){
   let json = this.toJSON();
   let keyArray = this.keyArray();
   keyArray = keyArray.filter((item:any) => item.includes(key));
-    if (keyArray.length < 1) return {};
+  if (keyArray.length <= 0) return {};
     const obj:any = {};
     for (const key of keyArray) {
         obj[key] = json[key];
-    }
+    };
     return obj;
 };
 
@@ -271,11 +271,11 @@ startsWith(key:string){
   let json = this.toJSON();
   let keyArray = this.keyArray();
   keyArray = keyArray.filter((item:any) => item.startsWith(key));
-    if (keyArray.length < 1) return {};
+  if (keyArray.length <= 0) return {};
     const obj:any = {};
     for (const key of keyArray) {
         obj[key] = json[key];
-    }
+    };
     return obj;
 };
 
@@ -283,14 +283,18 @@ endsWith(key:string){
   let json = this.toJSON();
   let keyArray = this.keyArray();
   keyArray = keyArray.filter((item:any) => item.endsWith(key));
-    if (keyArray.length < 1) return {};
+    if (keyArray.length <= 0) return {};
     const obj:any = {};
     for (const key of keyArray) {
         obj[key] = json[key];
-    }
+    };
     return obj;
 };
 
+destroy() {
+fs.unlinkSync(this.dosya);
 };
 
 
+
+};

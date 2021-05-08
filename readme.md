@@ -60,7 +60,11 @@ db.includes("9874449847");
 
 db.startsWith("Hello_");
 
-db.endsWith("_owner")
+db.endsWith("_owner");
+
+db.toJSON();
+
+db.destroy();
 
 
 ```
